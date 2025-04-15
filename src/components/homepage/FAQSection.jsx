@@ -3,6 +3,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MessageSquare } from "lucide-react";
+import Image from "next/image";
 
 const faqCategories = [
   {
@@ -134,18 +135,18 @@ const FAQSection = () => {
           <div className="flex flex-col lg:flex-row w-full items-start gap-6 sm:gap-[60px] mt-10 sm:mt-20 relative">
             {/* AI Assistant Card */}
             <div className="w-full lg:w-[268px] order-2 lg:order-1 h-fit self-start sticky top-24">
-              <div className="">
-                <Card className="bg-white border border-[rgba(232,232,232,1)] rounded-xl shadow-sm">
-                  <CardContent className="flex flex-col h-full p-6 sm:p-8">
-                    <div className="flex flex-col items-stretch text-[#3E3941] justify-center h-full">
-                      <h3 className="text-lg sm:text-xl font-semibold">Have Questions? We're Here to Help!</h3>
-                      <p className="text-sm leading-6 mt-3 sm:mt-4 text-[#636777]">
+              <div className="p-[1px] bg-gradient-to-t from-primary-500 to-[#BBB4F0] rounded-xl overflow-hidden">
+                <Card className="bg-white">
+                  <CardContent className="flex flex-col h-full px-8">
+                    <div className="flex flex-col items-stretch text-text-color justify-center h-full">
+                      <h3 className="text-lg sm:text-xl font-medium">Have Questions? We're Here to Help!</h3>
+                      <p className="text-xs leading-6 mt-3 sm:mt-4 text-text-color font-medium">
                         Reach out to our support team for any queries or assistance.
                       </p>
                     </div>
-                    <Button className="mt-6 sm:mt-10 bg-[#5443DA] hover:bg-[#4936C7] text-white w-full flex justify-between items-center py-2.5 px-4 rounded-lg transition-colors duration-200">
-                      <span>AI Assistant</span>
-                      <MessageSquare className="h-5 w-5" />
+                    <Button className="mt-6 sm:mt-[56px] bg-[#5443DA] hover:bg-[#4936C7] text-white w-full flex justify-between items-center py-3 px-5 rounded-lg transition-colors duration-200">
+                      <span className="text-base font-medium">AI Assistant</span>
+                      <Image src="/Vectorstar.svg" alt="starvector" width={20} height={20} />
                     </Button>
                   </CardContent>
                 </Card>
@@ -180,7 +181,7 @@ const FAQSection = () => {
                           value={`item-${categoryIndex}-${questionIndex}`}
                           className="bg-white border border-[rgba(232,232,232,1)] rounded-xl mb-3 sm:mb-4 overflow-hidden data-[state=open]:shadow-sm transition-shadow duration-200"
                         >
-                          <AccordionTrigger className="px-4 sm:px-5 py-3 sm:py-4 hover:no-underline group">
+                          <AccordionTrigger className="px-4 sm:px-5 py-3 sm:py-5 hover:no-underline group">
                             <span className="text-left text-base sm:text-lg text-[#303030] font-medium group-hover:text-[#5443DA] transition-colors duration-200">
                               {`${questionIndex + 1}. ${item.question}`}
                             </span>

@@ -24,6 +24,7 @@ export function DashboardCarousel({ images, autoPlayInterval = 8000 }) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [direction, setDirection] = useState(0)
   const { width } = useWindowSize()
+  const [isScrolling, setIsScrolling] = useState(false)
 
   // Responsive size logic
   let centerSlideWidth = width - 80
@@ -42,11 +43,24 @@ export function DashboardCarousel({ images, autoPlayInterval = 8000 }) {
   const sideSlideScale = 0.9
   const sideSlideWidth = centerSlideWidth * sideSlideScale
 
-  const handleTabClick = (index) => {
-    setDirection(index > currentIndex ? 1 : -1)
-    setCurrentIndex(index)
-  }
 
+
+  const handleTabClick = async (targetIndex) => {
+    if (targetIndex === currentIndex || isScrolling) return
+  
+    const stepDirection = targetIndex > currentIndex ? 1 : -1
+    setIsScrolling(true)
+    setDirection(stepDirection)
+  
+    const steps = Math.abs(targetIndex - currentIndex)
+  
+    for (let i = 0; i < steps; i++) {
+      setCurrentIndex((prevIndex) => prevIndex + stepDirection)
+      await new Promise((res) => setTimeout(res, 150)) // match animation duration
+    }
+  
+    setIsScrolling(false)
+  }
   const nextSlide = useCallback(() => {
     setDirection(1)
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)

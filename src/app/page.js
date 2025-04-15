@@ -1,7 +1,9 @@
+import Banner from "@/components/homepage/Banner";
 import Partner from "@/components/homepage/Brands";
 import FAQSection from "@/components/homepage/FAQSection";
 import GetStarted from "@/components/homepage/GetStarted";
 import HeroSection from "@/components/homepage/HeroSection";
+import ThreeImageSlider from "@/components/homepage/LeadsSection";
 import LeadsSection from "@/components/homepage/LeadsSection";
 import { Pricing } from "@/components/homepage/pricing";
 import { DashboardCarousel, ImageCarousel } from "@/components/homepage/Slides";
@@ -46,6 +48,7 @@ export default function Home() {
       <GetStarted />
       <Pricing />
       <FAQSection />
+      <Banner />
     </div>
   );
 }
