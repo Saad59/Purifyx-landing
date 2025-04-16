@@ -31,7 +31,7 @@ const steps = [
 const StepCard = ({ step, number, title, description, imageAlt }) => (
   <div id={step} className="step-item sticky top-40 ">
     <div className="step-content card-body px-4 md:px-6 xl:px-8 2xl:px-0">
-      <div className="mx-auto max-w-[1300px] w-full bg-[#F6F6FD] rounded-lg">
+      <div className="mx-auto max-w-[1300px] w-full bg-[#F6F6FD] rounded-lg p-4 lg:py-15 lg:px-4">
         <div className="flex flex-col md:flex-row gap-8 md:gap-16">
           <div className="w-full md:w-2/5">
             <div className="flex items-center gap-2 mb-6 text-nowrap">
