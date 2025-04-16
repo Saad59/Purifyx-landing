@@ -12,15 +12,15 @@ const faqCategories = [
     description:
       "These questions help you get started with finding leads or businesses.",
     questions: [
-      { 
+      {
         question: "How do I start a search for leads?",
         answer: "You can start a search by navigating to the Search tab in the dashboard and entering keywords related to your target audience. You can filter results based on industry, location, company size, and more."
       },
-      { 
+      {
         question: "What filters can I use to narrow down my search?",
         answer: "PurifyX offers a wide range of filters including industry, company size, location, revenue, founding date, technology used, and more. These filters help you find the most relevant leads for your business."
       },
-      { 
+      {
         question: "Can I save my search for later?",
         answer: "Yes, you can save any search for later by clicking the 'Save Search' button. Your saved searches will appear in the 'Saved Searches' section for quick access in the future."
       },
@@ -32,19 +32,19 @@ const faqCategories = [
     description:
       "These questions show you how to keep your search results organized.",
     questions: [
-      { 
+      {
         question: "How do I create a list from my search results?",
         answer: "After running a search, select the leads you want to save and click the 'Add to List' button. You can create a new list or add to an existing one."
       },
-      { 
+      {
         question: "Can I edit or delete lists later?",
         answer: "Yes, you can edit or delete lists at any time. Go to the 'Lists' section, select the list you want to modify, and use the edit or delete options."
       },
-      { 
+      {
         question: "What's the best way to organize my lists?",
         answer: "Create specific lists based on campaigns, industries, or sales stages. You can also use tags and notes to add more context to your lists."
       },
-      { 
+      {
         question: "How does InboxAutomation ensure 100% inbox placement?",
         answer: "InboxAutomation uses advanced email deliverability techniques including IP warming, domain authentication, and dynamic sending patterns to maximize inbox placement rates."
       },
@@ -56,15 +56,15 @@ const faqCategories = [
     description:
       "These questions explain this upcoming feature and what it's all about.",
     questions: [
-      { 
+      {
         question: 'What does "Find Local Businesses-pending" mean?',
         answer: "This feature is currently in development and will be available soon. It will allow you to discover businesses in specific geographic locations."
       },
-      { 
+      {
         question: "How can I use this feature to find businesses near me?",
         answer: "Once released, you'll be able to search for businesses within a specific radius of any location. You can further refine results by business type, size, and other criteria."
       },
-      { 
+      {
         question: "When will this feature be available?",
         answer: "The Find Local Businesses feature is scheduled for release in the next product update. Stay tuned for announcements in our newsletter or product dashboard."
       },
@@ -76,19 +76,19 @@ const faqCategories = [
     description:
       "These questions cover how to boost your lead data with extra details.",
     questions: [
-      { 
+      {
         question: "What is data enrichment, and how does it help me?",
         answer: "Data enrichment adds valuable information to your existing lead data, such as contact details, social profiles, company information, and more. This helps you understand your leads better and create more personalized outreach."
       },
-      { 
+      {
         question: "How do I upload a CSV file for enrichment?",
         answer: "Go to the 'Data Enrichment' section, click 'Upload CSV', select your file, and map the columns. Our system will process your file and add additional data points to your leads."
       },
-      { 
+      {
         question: "Can I enrich data directly in my CRM?",
         answer: "Yes, with our CRM integrations, you can enrich data directly in your CRM. Connect your CRM in the 'Integrations' section and select which data fields you want to enrich."
       },
-      { 
+      {
         question: "How long does enrichment take?",
         answer: "Enrichment processing time depends on the size of your dataset. Small lists (under 1,000 contacts) typically take just a few minutes, while larger lists may take up to a few hours."
       },
@@ -99,15 +99,15 @@ const faqCategories = [
     title: "Sequence",
     description: "These questions help you automate outreach like a pro",
     questions: [
-      { 
+      {
         question: "What is a sequence, and how does it work?",
         answer: "A sequence is a series of automated emails sent to leads over time. You can set the timing, content, and conditions for each email in the sequence. This helps you maintain consistent follow-up without manual work."
       },
-      { 
+      {
         question: "How do I set up a sequence for my leads?",
         answer: "Go to the 'Sequences' section, click 'Create New Sequence', design your email templates, set the timing between emails, and select which leads should receive the sequence."
       },
-      { 
+      {
         question: "Can I make my emails feel personal?",
         answer: "Absolutely! Use personalization tokens to dynamically insert lead information like name, company, and custom fields. You can also use conditional content that displays differently based on lead attributes."
       },
@@ -136,7 +136,7 @@ const FAQSection = () => {
             {/* AI Assistant Card */}
             <div className="w-full lg:w-[268px] order-2 lg:order-1 h-fit self-start sticky top-24">
               <div className="p-[1px] bg-gradient-to-t from-primary-500 to-[#BBB4F0] rounded-xl overflow-hidden">
-                <Card className="bg-white">
+                <Card className="bg-white rounded-[12px]">
                   <CardContent className="flex flex-col h-full px-8">
                     <div className="flex flex-col items-stretch text-text-color justify-center h-full">
                       <h3 className="text-lg sm:text-xl font-medium">Have Questions? We're Here to Help!</h3>
@@ -152,7 +152,7 @@ const FAQSection = () => {
                 </Card>
               </div>
             </div>
-            
+
             {/* FAQ Categories */}
             <div className="flex-1 order-1 w-full lg:order-2">
               {faqCategories.map((category, categoryIndex) => (
@@ -172,12 +172,12 @@ const FAQSection = () => {
                       </p>
                     </div>
                   </div>
-                  
+
                   <div className="w-full mt-4 sm:mt-5">
                     <Accordion type="single" collapsible className="w-full">
                       {category.questions.map((item, questionIndex) => (
-                        <AccordionItem 
-                          key={questionIndex} 
+                        <AccordionItem
+                          key={questionIndex}
                           value={`item-${categoryIndex}-${questionIndex}`}
                           className="bg-white border border-[rgba(232,232,232,1)] rounded-xl mb-3 sm:mb-4 overflow-hidden data-[state=open]:shadow-sm transition-shadow duration-200"
                         >
