@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
@@ -20,11 +20,38 @@ function useWindowSize() {
   return size
 }
 
-export function DashboardCarousel({ images, autoPlayInterval = 8000 }) {
+export function DashboardCarousel({ images = [
+  {
+    title: "Search",
+    description: "Quick search through our vast and powerful leads and intuitive search tools. Find new opportunities fast without wasting time.",
+    src: "/Leads.png",
+    alt: "Search Interface"
+  },
+  {
+    title: "Create Or Add To Lists",
+    description: "Stay organized. Easily add prospects to new or existing lists for targeted follow-ups.",
+    src: "/Leads.png",
+    alt: "Lists Interface"
+  },
+  {
+    title: "Create Or Add To Lists",
+    description: "Stay organized. Easily add prospects to new or existing lists for targeted follow-ups.",
+    src: "/Leads.png",
+    alt: "Lists Interface"
+  },
+  {
+    title: "Data Enrichment",
+    description: "Get up-to-date information on each lead. Automatically pull in relevant data so you can make your outreach more effective.",
+    src: "//Leads.png",
+    alt: "Data Enrichment Interface"
+  }
+], autoPlayInterval = 8000 }) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [direction, setDirection] = useState(0)
   const { width } = useWindowSize()
   const [isScrolling, setIsScrolling] = useState(false)
+  const [progress, setProgress] = useState(0)
+  const tabsContainerRef = useRef(null)
 
   // Responsive size logic
   let centerSlideWidth = width - 80
@@ -43,7 +70,25 @@ export function DashboardCarousel({ images, autoPlayInterval = 8000 }) {
   const sideSlideScale = 0.9
   const sideSlideWidth = centerSlideWidth * sideSlideScale
 
-
+  // Add scroll into view effect when currentIndex changes
+  useEffect(() => {
+    if (tabsContainerRef.current) {
+      const container = tabsContainerRef.current;
+      const activeTab = container.querySelector(`[data-index="${currentIndex}"]`);
+      
+      if (activeTab) {
+        const containerRect = container.getBoundingClientRect();
+        const tabRect = activeTab.getBoundingClientRect();
+        
+        const scrollLeft = container.scrollLeft + tabRect.left - containerRect.left - (containerRect.width - tabRect.width) / 2;
+        
+        container.scrollTo({
+          left: scrollLeft,
+          behavior: 'smooth'
+        });
+      }
+    }
+  }, [currentIndex]);
 
   const handleTabClick = async (targetIndex) => {
     if (targetIndex === currentIndex || isScrolling) return
@@ -72,11 +117,34 @@ export function DashboardCarousel({ images, autoPlayInterval = 8000 }) {
   }, [images.length])
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide()
-    }, autoPlayInterval)
-    return () => clearInterval(interval)
-  }, [nextSlide, autoPlayInterval])
+    setProgress(0)
+    const startTime = performance.now()
+    let animationFrameId
+
+    const animate = (currentTime) => {
+      const elapsed = currentTime - startTime
+      const newProgress = Math.min((elapsed / autoPlayInterval) * 100, 100)
+      
+      setProgress(newProgress)
+      
+      if (newProgress < 100) {
+        animationFrameId = requestAnimationFrame(animate)
+      } else {
+        nextSlide()
+      }
+    }
+
+    // Start the animation on the next frame to ensure proper initialization
+    requestAnimationFrame(() => {
+      animationFrameId = requestAnimationFrame(animate)
+    })
+
+    return () => {
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId)
+      }
+    }
+  }, [currentIndex, autoPlayInterval, nextSlide])
 
   // Calculate all slides positions for smoother transitions
   const getSlideProps = (index) => {
@@ -207,31 +275,52 @@ export function DashboardCarousel({ images, autoPlayInterval = 8000 }) {
           </div>
         </div>
 
-
         {/* Tabs */}
-        <div className="mt-10 sm:mt-16 flex justify-center overflow-x-auto pb-6 px-1 sm:px-6 md:px-8">
-          <div className="flex flex-nowrap gap-2 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-[104px] border-b border-gray-200 min-w-0">
+        <div className="mt-10 sm:mt-16 flex justify-center overflow-x-auto ml-5 md:ml-15 relative">
+          <div ref={tabsContainerRef} className="flex flex-nowrap gap-5 min-w-0 relative mx-auto overflow-x-auto scroll-smooth">
             {images.map((image, index) => (
-              <button
+              <div 
                 key={index}
-                onClick={() => handleTabClick(index)}
-                className={cn(
-                  "text-[10px] sm:text-base md:text-lg lg:text-xl xl:text-2xl font-medium font-geist pb-3 sm:pb-4 relative sm:px-3 md:px-4 whitespace-nowrap transition-all duration-300",
-                  currentIndex === index ? "text-[#101828]" : "text-[#667085]"
-                )}
-                aria-current={currentIndex === index ? "true" : "false"}
+                data-index={index}
+                className="flex flex-col gap-8 min-w-[280px] max-w-[403px] relative"
               >
-                {image.title}
-                <motion.div
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#6938EF]"
-                  initial={false}
-                  animate={{
-                    opacity: currentIndex === index ? 1 : 0,
-                    scaleX: currentIndex === index ? 1 : 0,
-                  }}
-                  transition={{ duration: 0.3 }}
-                />
-              </button>
+                <div className="absolute top-0 left-0 right-0 h-[3px] rounded-md bg-[#D1D5DB]">
+                  {currentIndex === index && (
+                    <motion.div
+                      className="absolute top-0 left-0 h-full w-full bg-[#7F56D9] origin-left"
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: progress / 100 }}
+                      transition={{
+                        duration: 0,
+                        ease: "linear"
+                      }}
+                    />
+                  )}
+                </div>
+                <div
+                  className={cn(
+                    "flex flex-col items-start gap-6 pt-8 w-full cursor-pointer",
+              
+                  )}
+                >
+                  <div onClick={() => handleTabClick(index)} className="w-full flex flex-col gap-6">
+                    <h3 className={cn(
+                      "text-[20px] font-medium leading-tight text-text-color"
+                    )}>
+                      {image.title}
+                    </h3>
+                    <p className="text-[15px] text-[#6B7280] font-normal leading-tight w-full whitespace-normal line-clamp-3">
+                      {image.description}
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2 text-[15px] text-text-color font-medium leading-tight">
+                    <span>View more</span>
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2.5 6H9.5M9.5 6L6 2.5M9.5 6L6 9.5" stroke="#475467" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>

@@ -18,24 +18,28 @@ export default function Home() {
       id: 1,
       title: "Search",
       src: "/Leads.png",
+      description: "Quickly discover the right prospects using powerful filters and intuitive search tools. Find new opportunities fast without wasting time.",
       alt: "Search Dashboard Interface",
     },
     {
       id: 2,
       title: "Create Or Add To Lists",
       src: "/HeroSection.svg",
+      description: "Stay organized and never lose track of potential customers. Easily add prospects to new or existing lists for targeted follow-ups.",
       alt: "Lists Dashboard Interface",
     },
     {
       id: 3,
       title: "Data Enrichment",
       src: "/Leads.png",
+      description: "Get rich, up-to-date information on each lead. Automatically pull in relevant data so you can tailor your outreach more effectively.",
       alt: "Data Enrichment Dashboard Interface",
     },
     {
       id: 4,
       title: "View Analytics",
       src: "/HeroSection.svg",
+      description: "Stay organized and never lose track of potential customers. Easily add prospects to new or existing lists for targeted follow-ups.",
       alt: "Analytics Dashboard Interface",
     },
   ]

@@ -8,7 +8,7 @@ const Footer = () => {
     <footer className="w-full bg-white">
       <div className="flex flex-col max-w-[1300px] mx-auto">
         {/* Top Section */}
-        <div className="flex flex-col md:flex-row px-4 sm:px-6 py-8 sm:py-[60px] gap-8 md:gap-0">
+        <div className="flex flex-col md:flex-row px-4 md:px-6 xl:px-8 2xl:px-0 sm:py-[60px] gap-8 md:gap-0">
           {/* Left Side */}
           <div className="flex-1 flex flex-col gap-[30px]">
             <Link href="/" className="flex items-center">
