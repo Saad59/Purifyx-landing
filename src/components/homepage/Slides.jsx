@@ -276,7 +276,7 @@ export function DashboardCarousel({ images = [
         </div>
 
         {/* Tabs */}
-        <div className="mt-10 sm:mt-16 flex justify-center overflow-x-auto ml-5 md:ml-15 relative">
+        <div className="mt-10 sm:mt-16 flex justify-center overflow-x-auto ml-5 md:ml-15 mr-2 relative">
           <div ref={tabsContainerRef} className="flex flex-nowrap gap-5 min-w-0 relative mx-auto overflow-x-auto scroll-smooth">
             {images.map((image, index) => (
               <div 
