@@ -298,7 +298,7 @@ export const Pricing = () => {
 
   return (
     <section className="w-full flex justify-center px-4">
-      <div className="w-full max-w-[1300px] flex flex-col items-center justify-center py-20 sm:py-36">
+      <div className="w-full max-w-[1300px] flex flex-col items-center justify-center py-[80px] md:py-[100px] lg:py-[140px]">
         <PricingHeader
           title="Pick the Perfect Plan to Grow Your Business"
           subtitle="Choose a plan that fits your needs and start finding leads today. All plans come with a 7-day free trial, so you can try before you buy!"

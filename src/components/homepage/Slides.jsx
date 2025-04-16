@@ -193,7 +193,7 @@ export function DashboardCarousel({ images = [
   }
 
   return (
-    <div className="w-full bg-[#F6F6FD] py-20 sm:py-28 md:py-32 relative">
+    <div className="w-full bg-[#F6F6FD] py-[80px] md:py-[100px] lg:py-[140px] relative">
       <div className="text-center space-y-4 mb-12 sm:mb-16">
         <h2 className="text-[28px] sm:text-[36px] md:text-[48px] font-semibold text-text-color tracking-[-0.02em]">
           Find Your Ideal Leads in Seconds

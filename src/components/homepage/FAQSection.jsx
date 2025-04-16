@@ -118,7 +118,7 @@ const faqCategories = [
 const FAQSection = () => {
   return (
     <section className="w-full bg-[rgba(246,246,253,1)]">
-      <div className="w-full max-w-[1300px] mx-auto px-4 md:px-6 xl:px-8 2xl:px-0 py-10 sm:py-36">
+      <div className="w-full max-w-[1300px] mx-auto px-4 md:px-6 xl:px-8 2xl:px-0 py-[80px] md:py-[100px] lg:py-[140px]">
         <div className="w-full">
           <div className="w-full text-center">
             <h2
